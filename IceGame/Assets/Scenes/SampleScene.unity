@@ -249,7 +249,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 618749353}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 52a038d483f68ed41b890a135527c1b6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -392,11 +392,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57673c67d21636445b997b797aae237c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  groundCheck: {fileID: 0}
+  rb: {fileID: 618749355}
+  groundCheck: {fileID: 1010886083}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!4 &866049775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4111997587841706727, guid: f32318023de515b42bb0751b4d513bca, type: 3}

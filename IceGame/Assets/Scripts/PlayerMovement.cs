@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    private float speed = 8f;
-    private float jumpingPower = 16f;
+    public float speed = 8f; //change to private when finalised
+    public float jumpingPower = 12f; //change to private when finalised
     private bool isFacingRight = true;
 
     [SerializeField] private Rigidbody2D rb;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
         Flip();
