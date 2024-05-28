@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
 
+    private bool touchingDeath = false;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -80,4 +82,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.tag == "Respawn") 
+        {
+            touchingDeath = true;
+        }
+    }
 }
