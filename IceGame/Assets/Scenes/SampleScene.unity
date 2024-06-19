@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947b26297ce8fd94a819ea397a5ed767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
+  Player: {fileID: 618749353}
 --- !u!1 &618749353
 GameObject:
   m_ObjectHideFlags: 0
@@ -4102,7 +4102,7 @@ GameObject:
   - component: {fileID: 1081086188}
   m_Layer: 0
   m_Name: RoomTrigger2
-  m_TagString: Room
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4179,7 +4179,7 @@ GameObject:
   - component: {fileID: 1251184128}
   m_Layer: 0
   m_Name: RoomTrigger1
-  m_TagString: Room
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

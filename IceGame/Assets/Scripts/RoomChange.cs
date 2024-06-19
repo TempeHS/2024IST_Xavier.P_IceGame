@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class RoomChange : MonoBehaviour
 {
+    public GameObject Player;
+    private Respawn respawnScript; 
+
+    void Start()
+    {
+        respawnScript = Player.GetComponent<Respawn>(); 
+    }
     // Update is called once per frame
     void Update()
     {
-        if (activeRoom != this.transform.position.x /24 + 12)
+        if (respawnScript.activeRoom != this.transform.position.x /24 + 12)
         {
-            if (cameraMove = true)
+            if (respawnScript.cameraMove == true)
             {
-            this.transform.position.x = activeRoom * 24 - 12;
+            transform.position = new Vector3(respawnScript.activeRoom * 24 - 12, this.transform.position.y);
             }
         } 
     }

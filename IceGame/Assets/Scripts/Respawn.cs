@@ -19,8 +19,10 @@ public class Respawn : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        activeRoom = (int) this.transform.position.x / 24 + 12;
+        activeRoom = (int) (this.transform.position.x + 12) / 24 ;
         cameraMove = true;
+        Debug.Log("bingus");
+        Debug.Log(activeRoom);
     }
 
     void playerRespawn()
