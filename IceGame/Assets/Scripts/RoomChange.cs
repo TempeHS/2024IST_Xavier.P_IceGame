@@ -18,7 +18,7 @@ public class RoomChange : MonoBehaviour
         {
             if (respawnScript.cameraMove == true)
             {
-            transform.position = new Vector3(respawnScript.activeRoom * 24 - 12, this.transform.position.y);
+            transform.position = new Vector3(respawnScript.activeRoom * 24, this.transform.position.y, this.transform.position.z);
             }
         } 
     }
