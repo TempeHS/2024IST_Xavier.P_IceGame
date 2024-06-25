@@ -26,7 +26,7 @@ public class Respawn : MonoBehaviour
         {
             activeRoom = activeRoom + 1;
         }
-        else if (CamPos >= this.transform.position.x)
+        else if (CamPos > this.transform.position.x)
         {
             activeRoom = activeRoom - 1;
         }
