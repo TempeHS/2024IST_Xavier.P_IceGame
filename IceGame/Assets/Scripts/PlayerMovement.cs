@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-
+    [SerializeField] private BoxCollider2D bc2d;
 
     // Start is called before the first frame update
     void Update()
@@ -55,6 +55,15 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
 
             coyoteTimeCounter = 0f;
+        }
+
+        if (Input.GetButtonDown("Crouch"))
+        {
+            bc2d.size = new Vector2(bc2d.size.x, 0.25f);
+        }
+        if (Input.GetButtonUp("Crouch"))
+        {
+            bc2d.size = new Vector2(bc2d.size.x, 1.5f);
         }
 
         Flip();

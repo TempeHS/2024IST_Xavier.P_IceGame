@@ -15,7 +15,6 @@ public class Respawn : MonoBehaviour
         CamPos = camera.transform.position.x;
         if (this.transform.position.y <= badY)
         {
-            Debug.Log("bingo p1");
             playerRespawn();
         }
     }
@@ -31,7 +30,7 @@ public class Respawn : MonoBehaviour
             activeRoom = activeRoom - 1;
         }
         cameraMove = true;
-        Debug.Log("bingus");
+        Debug.Log("Room Triggered");
         Debug.Log(activeRoom);
     }
 
