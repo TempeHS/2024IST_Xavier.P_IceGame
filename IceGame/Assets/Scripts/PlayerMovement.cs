@@ -15,8 +15,11 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTime = 0.1f;
     private float jumpBufferCounter;
 
+    private bool needStand;
+
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
+    [SerializeField] private Transform roofCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private BoxCollider2D bc2d;
 
@@ -61,9 +64,17 @@ public class PlayerMovement : MonoBehaviour
         {
             bc2d.size = new Vector2(bc2d.size.x, 0.25f);
         }
-        if (Input.GetButtonUp("Crouch"))
+        if (Input.GetButtonUp("Crouch") && !IsRoof())
         {
-            bc2d.size = new Vector2(bc2d.size.x, 1.5f);
+            bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+        } 
+        else 
+        {
+            needStand = true;
+        }
+        if (needStand == true && !IsRoof() && !Input.GetButton("Crouch"))
+        {
+            bc2d.size = new Vector2(bc2d.size.x, 1.46f);
         }
 
         Flip();
@@ -90,5 +101,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool IsRoof()
+    {
+        return Physics2D.OverlapCircle(roofCheck.position, 0.2f, groundLayer);
+    }
 
 }
