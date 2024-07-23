@@ -16,17 +16,30 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferCounter;
 
     private bool needStand;
+    private bool isCrouching;
+
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashingPower = 24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown = 1f;
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private Transform roofCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private BoxCollider2D bc2d;
+    [SerializeField] private TrailRenderer tr;
 
     // Start is called before the first frame update
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (isDashing) 
+        {
+            return;
+        }
 
         if (IsGrounded())
         {
@@ -37,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isCrouching)
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -63,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Crouch"))
         {
             bc2d.size = new Vector2(bc2d.size.x, 0.25f);
+            isCrouching = true;
         }
         if (Input.GetButtonUp("Crouch") && !IsRoof())
         {
@@ -75,6 +89,12 @@ public class PlayerMovement : MonoBehaviour
         if (needStand == true && !IsRoof() && !Input.GetButton("Crouch"))
         {
             bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+            isCrouching = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
+        {
+            StartCoroutine(Dash());
         }
 
         Flip();
@@ -83,6 +103,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if (isDashing) 
+        {
+            return;
+        }
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
@@ -105,5 +130,19 @@ public class PlayerMovement : MonoBehaviour
     {
         return Physics2D.OverlapCircle(roofCheck.position, 0.2f, groundLayer);
     }
-
+    private IEnumerator Dash() 
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
 }
