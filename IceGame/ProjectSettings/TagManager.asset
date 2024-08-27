@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Room
+  - RoomTrigger
+  - Blob
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Hurt
   - Water
   - UI
   - Ground

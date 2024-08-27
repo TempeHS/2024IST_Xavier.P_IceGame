@@ -14,12 +14,10 @@ public class RoomChange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (respawnScript.activeRoom != this.transform.position.x /24 + 12)
+        if (respawnScript.activeRoom != this.transform.position.x /24 && respawnScript.cameraMove == true)
         {
-            if (respawnScript.cameraMove == true)
-            {
-                transform.position = new Vector3(respawnScript.activeRoom * 24, this.transform.position.y, this.transform.position.z);
-            }
+            transform.position = new Vector3(respawnScript.activeRoom * 24, this.transform.position.y, this.transform.position.z);
+            respawnScript.cameraMove = false;
         } 
     }
     

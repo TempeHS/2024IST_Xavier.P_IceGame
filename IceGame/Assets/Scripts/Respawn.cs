@@ -21,17 +21,48 @@ public class Respawn : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (CamPos <= this.transform.position.x) 
+        
+        if (other.CompareTag("RoomTrigger")) 
         {
-            activeRoom = activeRoom + 1;
+            Debug.Log("Pre-room: " + activeRoom);
+            if (CamPos <= this.transform.position.x) 
+            {
+                activeRoom = activeRoom + 1;
+            }
+            else if (CamPos > this.transform.position.x)
+            {
+                activeRoom = activeRoom - 1;
+            }
+            cameraMove = true;
+            Debug.Log("Room Triggered: " + activeRoom);
         }
-        else if (CamPos > this.transform.position.x)
+        if (other.CompareTag("Blob"))
         {
-            activeRoom = activeRoom - 1;
+            
         }
-        cameraMove = true;
-        Debug.Log("Room Triggered");
-        Debug.Log(activeRoom);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        
+         if (other.CompareTag("RoomTrigger")) 
+        {
+            Debug.Log("Pre-exit: " + activeRoom);
+            if (CamPos <= this.transform.position.x) 
+            {
+                activeRoom = activeRoom + 1;
+            }
+            else if (CamPos > this.transform.position.x)
+            {
+                activeRoom = activeRoom - 1;
+            }
+            cameraMove = true;
+            Debug.Log("Room Exit: " + activeRoom);
+        }
+        if (other.CompareTag("Blob"))
+        {
+            
+        }
     }
 
     void playerRespawn()
