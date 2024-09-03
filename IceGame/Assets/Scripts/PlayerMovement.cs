@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform roofCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private BoxCollider2D bc2d;
+    [SerializeField] private CapsuleCollider2D cc2d;
     [SerializeField] private TrailRenderer tr;
 
     // Start is called before the first frame update
@@ -75,12 +76,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Crouch"))
         {
-            bc2d.size = new Vector2(bc2d.size.x, 0.25f);
+            //bc2d.size = new Vector2(bc2d.size.x, 0.25f);
+            cc2d.size = new Vector2(cc2d.size.x, 0.75f);
             isCrouching = true;
         }
         if (Input.GetButtonUp("Crouch") && !IsRoof())
         {
-            bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+            //bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+            cc2d.size = new Vector2(cc2d.size.x, 1.96f);
         } 
         else 
         {
@@ -88,7 +91,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (needStand == true && !IsRoof() && !Input.GetButton("Crouch"))
         {
-            bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+            //bc2d.size = new Vector2(bc2d.size.x, 1.46f);
+            cc2d.size = new Vector2(cc2d.size.x, 1.96f);
             isCrouching = false;
         }
 
