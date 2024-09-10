@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private float horizontal;
-    public float speed = 6f; //change to private when finalised
-    public float jumpingPower = 8f; //change to private when finalised
+    public float speed = 6f; 
+    public float jumpingPower = 8f; 
     private bool isFacingRight = true;
+    //public Vector2 positionToMoveTo;
 
     private float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
@@ -22,7 +23,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     private float dashingPower = 24f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown = 1f;
+    //private float dashingCooldown = 0.4f;
+    
 
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
@@ -35,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
 
+        horizontal = Input.GetAxisRaw("Horizontal");
         if (isDashing) 
         {
             return;
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetButtonDown("Crouch") /*&& IsGrounded()*/)
         {
             //bc2d.size = new Vector2(bc2d.size.x, 0.25f);
             cc2d.size = new Vector2(cc2d.size.x, 0.75f);
@@ -84,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //bc2d.size = new Vector2(bc2d.size.x, 1.46f);
             cc2d.size = new Vector2(cc2d.size.x, 1.96f);
+            //StartCoroutine(LerpPosition(positionToMoveTo, 0.05f));
+            isCrouching = false;
         } 
         else 
         {
@@ -103,10 +107,25 @@ public class PlayerMovement : MonoBehaviour
 
         Flip();
     }
+    /*
+    IEnumerator LerpPosition(Vector2 targetPosition, float duration)
+    {
+        float time = 0;
+        Vector2 startPosition = transform.position;
+
+        while (time < duration)
+        {
+            transform.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition; 
+    } */
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        //positionToMoveTo = new Vector2 (transform.position.x, transform.position.y + 0.605f);
         if (isDashing) 
         {
             return;
@@ -146,7 +165,17 @@ public class PlayerMovement : MonoBehaviour
         tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
+        
+        if (IsGrounded())
+        {
+            yield return new WaitForSeconds(0.1f);
+            canDash = true;
+        } else
+        {
+            yield return new WaitUntil( () => IsGrounded());
+            yield return new WaitForSeconds(0.1f);
+            canDash = true;
+        }
+        
     }
 }
