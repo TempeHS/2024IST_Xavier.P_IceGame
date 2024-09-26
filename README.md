@@ -25,4 +25,12 @@ Walkthrough below:
 # Developer Documentation
 
 ## Outstanding Elements
+
 ### Planned Features
+### Known Bugs
+
+# Credits
+
+- Remaining code by me
+- All art by me
+- Music by me
