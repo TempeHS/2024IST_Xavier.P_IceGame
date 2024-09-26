@@ -19,5 +19,5 @@ Linux and Mac builds are not released yet.
 
 Controllers are not currently supported.
 ## Walkthrough Video
-URGENT IMPLEMENT 
+![Walkthrough Video](/IceGame_Walkthrough.mp4)
 # Developer Documentaion
