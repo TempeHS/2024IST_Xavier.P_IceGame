@@ -48,7 +48,7 @@ Walkthrough below:
     - Status: In progress
  
 # Credits
-
+- Movement code partially from bendux's tutorials on youtube
 - Remaining code by me
 - All art by me
 - Music by me
