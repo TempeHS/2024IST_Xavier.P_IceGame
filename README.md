@@ -52,3 +52,4 @@ Walkthrough below:
 - Remaining code by me
 - All art by me
 - Music by me
+- UnityAspectRatioController by DenchiSoft
