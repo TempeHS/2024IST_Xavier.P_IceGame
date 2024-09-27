@@ -27,8 +27,25 @@ Walkthrough below:
 ## Outstanding Elements
 
 ### Planned Features
+#### High Priority
+- Controller support
+- Boss battle
+- Enemy interactivity
+- Pause menu and settings
+- Animations (already created, not implemented)
+- More enemies
+#### Medium Priority
+- Collectibles
+- 5-10 more rooms
+- Secrets
+- Sound effects
+#### Low Priority
+- Particle effects
+- Opening cutscene
 ### Known Bugs
-
+- Crouching can clip the player into the floor 
+    - Status: In progress
+ 
 # Credits
 
 - Remaining code by me
