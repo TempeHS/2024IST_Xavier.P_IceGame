@@ -1,5 +1,5 @@
 # IceGame
-This is a short demo of a platformer I am developing themed around mental health issues.
+This is a short demo of a singleplayer platformer I am developing themed around mental health issues.
 # User Documentation
 ## Getting Started
 ### Windows
@@ -42,6 +42,7 @@ Walkthrough below:
 #### Low Priority
 - Particle effects
 - Opening cutscene
+- Release on platforms (when fully completed)
 ### Known Bugs
 - Crouching can clip the player into the floor 
     - Status: In progress
